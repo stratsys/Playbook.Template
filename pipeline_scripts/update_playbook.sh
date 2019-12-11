@@ -1,5 +1,5 @@
 #!/bin/bash
-source build/common.sh
+source pipeline_scripts/common.sh
 
 [[ -z "$PLAYBOOK_SERVICE" ]] && exit 0
 
