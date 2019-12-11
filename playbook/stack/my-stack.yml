@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  my_service:
+    image: "${MY_SERVICE_IMAGE}"
+    environment:
+      FOO: "BAR"
+    networks:
+      - proxy
+    deploy:
+      update_config:
+        order: start-first
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=HostRegexp:my_service_url.{domain:.*}"
+        - "traefik.backend.loadbalancer.swarm=true"
+
+networks:
+  proxy:
+    external: true
+    name: stratsys_swarm_proxy
