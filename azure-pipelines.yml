@@ -32,7 +32,6 @@ variables:
     value: $(Build.SourceBranch)
   - name: GIT_COMMIT_SHA
     value: $(Build.SourceVersion)
-  - group: "Azure container registry - stratsys"
   - group: "Github-Playbook"
 trigger:
   - master
