@@ -4,7 +4,7 @@ services:
   my_service:
     image: "${MY_SERVICE_IMAGE}"
     environment:
-      FOO: "BAR"
+      FOO: "$FOO"
     networks:
       - proxy
     deploy:
