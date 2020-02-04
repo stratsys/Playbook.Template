@@ -17,6 +17,7 @@ steps:
   - script: |
       . pipeline_scripts/update_playbook.sh
     displayName: 'Update playbook'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - task: Docker@2
     displayName: Logout from ACR
     inputs:
