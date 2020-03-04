@@ -11,6 +11,6 @@ To create a new Playbook service, perform the following steps
 9. In your stack.yaml file, change the port and HostRegexp to expose your service on the given port, using the given host regexp. 
 10. In `build_config.sh`, modify `PLAYBOOK_SERVICE` to be stack:service, as set in steps 4 and 8
 11. Push all changes to GIT.
-12. Create a new Azure DevOps pipeline in your project and import the .yaml-file file.
+12. Create a new Azure DevOps pipeline in your project and import the .yaml-file file. Make sure that the variable group Github-Playbook exists in your Devops library.
 13. 
 14. Profit!

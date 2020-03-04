@@ -17,6 +17,8 @@ steps:
   - script: |
       . pipeline_scripts/update_playbook.sh
     displayName: 'Update playbook'
+    env:
+      GITHUB_PLAYBOOK_TOKEN: $(GITHUB_PLAYBOOK_TOKEN)
   - task: Docker@2
     displayName: Logout from ACR
     inputs:
