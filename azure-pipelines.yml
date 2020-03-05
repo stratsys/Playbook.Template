@@ -4,7 +4,7 @@ steps:
     displayName: 'Set pipeline variables'
   
   - script: |
-      . run_linter.sh
+      . pipeline_scripts/run_linter.sh
     displayName: 'Run Dockerfile linter'
 
   - script: |
