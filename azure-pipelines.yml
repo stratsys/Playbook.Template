@@ -27,7 +27,7 @@ steps:
     displayName: 'Update playbook'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     env:
-      GITHUB_PLAYBOOK_TOKEN: $(GITHUB_PLAYBOOK_TOKEN)
+      GITHUB_PLAYBOOK_TOKEN: $(GITHUB-PLAYBOOK-TOKEN)
 
   - task: Docker@2
     displayName: Logout from ACR
@@ -47,6 +47,7 @@ variables:
   - name: GIT_COMMIT_SHA
     value: $(Build.SourceVersion)
   - group: "Github-Playbook"
+  - group: "Azure Key Vault"
 
 trigger:
   - master
