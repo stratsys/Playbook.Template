@@ -3,7 +3,7 @@ To create a new Playbook service, perform the following steps
 1. Build a service using a Dockerfile. The final Docker result image will be deployed as a service. For a very simple example, see https://github.com/stratsys/Playbook.Sample.Go
 2. Copy all files in this repository (except README.md) to the service repository from step 1
 3. In `build_config.sh`, modify `CONTAINER_REGISTRY_REPOSITORY`. This name will be used as the repository name when pushing / pulling from the container registry.
-4. In playbook/stack, rename the stack file and folders from my-stack to the name of your stack.
+4. In playbook/stack, rename the stack file and folders from my-stack to the name of your stack. Also remember to change `MY_SERVICE_IMAGE` 
 5. If you don't want to use environment variables, delete the *.env file. If needed, this file can be added later.
 6. If you don't want to use special pre- and post-deploy steps, delete the *.sh file. If needed, this file can be added later.
 7. If you don't require any additional config files, delete the sub-directory with the config.json file. If needed, files here can be added later.
