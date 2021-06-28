@@ -11,6 +11,14 @@ steps:
       . pipeline_scripts/build_docker.sh
     displayName: 'Build Docker image'
 
+  - script: |
+      . pipeline_scripts/scanner-strict.sh
+    displayName: 'Scanner [Strict]'
+
+  - script: |
+      . pipeline_scripts/scanner-soft.sh
+    displayName: 'Scanner [Soft]'
+
   - task: Docker@2
     displayName: Login to ACR
     inputs:
