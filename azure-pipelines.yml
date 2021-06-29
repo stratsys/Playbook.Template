@@ -1,51 +1,10 @@
-steps:
-  - script: |
-      . pipeline_scripts/set_pipeline_variables.sh
-    displayName: 'Set pipeline variables'
-  
-  - script: |
-      . pipeline_scripts/run_linter.sh
-    displayName: 'Run Dockerfile linter'
-
-  - script: |
-      . pipeline_scripts/build_docker.sh
-    displayName: 'Build Docker image'
-
-  - script: |
-      . pipeline_scripts/scanner-strict.sh
-    displayName: 'Scanner [Strict]'
-
-  - script: |
-      . pipeline_scripts/scanner-soft.sh
-    displayName: 'Scanner [Soft]'
-
-  - task: Docker@2
-    displayName: Login to ACR
-    inputs:
-      command: login
-      containerRegistry: stratsysContainerRegistry
-
-  - script: |
-      . pipeline_scripts/push_dockerimage.sh
-    displayName: 'Push Docker image'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-
-  - script: |
-      . pipeline_scripts/update_playbook.sh
-    displayName: 'Update playbook'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    env:
-      GITHUB_PLAYBOOK_TOKEN: $(GITHUB-PLAYBOOK-TOKEN)
-
-  - task: Docker@2
-    displayName: Logout from ACR
-    inputs:
-      command: logout
-      containerRegistry: stratsysContainerRegistry
-
-  - script: |
-      . pipeline_scripts/remove_dockerimage.sh
-    displayName: 'Remove built image'
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: stratsys/Pipeline.Templates
+      ref: master
+      endpoint: "GitHub Stratsys"
 
 variables:
   - name: RELEASE_BRANCH
@@ -61,3 +20,6 @@ trigger:
   - master
 
 pool: "Linux-docker"
+
+steps:
+- template: pipelines.yml@templates
